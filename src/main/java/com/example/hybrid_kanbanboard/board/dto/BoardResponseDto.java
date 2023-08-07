@@ -5,11 +5,14 @@ import lombok.Getter;
 
 @Getter
 public class BoardResponseDto {
-    private int BoardId;
+    private Long BoardId;
     private String description;
     private String name;
 
     public BoardResponseDto(Board board) {
+        this.BoardId = board.getBoardId();
+        this.description= board.getDescription();
+        this.name = board.getName();
 
     }
 }

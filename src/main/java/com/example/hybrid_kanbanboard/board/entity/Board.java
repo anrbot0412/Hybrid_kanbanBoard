@@ -4,16 +4,18 @@ import com.example.hybrid_kanbanboard.board.dto.BoardRequestDto;
 import com.example.hybrid_kanbanboard.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int BoardId; // board 번호
+    private Long BoardId; // board 번호
 
     @Column(nullable = false)
     private String description; // board 설명

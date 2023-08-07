@@ -8,13 +8,26 @@ import com.example.hybrid_kanbanboard.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BoardService {
     private final BoardRepository boardRepository;
-    public BoardResponseDto createBoard(BoardRequestDto requestDto, User user) {
-        Board board =boardRepository.save(new Board(requestDto, user));
-        return new BoardResponseDto(board);
 
+    // 보드 생성
+    public BoardResponseDto createBoard(BoardRequestDto requestDto, User user) {
+        Board board = boardRepository.save(new Board(requestDto, user));
+        return new BoardResponseDto(board);
+    }
+    // 보드 조회
+    public List<BoardResponseDto> getBoard() {
+        return boardRepository.findAll().stream().map(BoardResponseDto::new).toList();
+    }
+
+    // 특정 보드 조회
+    public Board findBoard(Long BoardId) {
+        return boardRepository.findById(BoardId).orElseThrow(() ->
+                new IllegalArgumentException("선택한 보드가 존재하지 않습니다"));
     }
 }
