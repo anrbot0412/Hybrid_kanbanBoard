@@ -1,4 +1,7 @@
 package com.example.hybrid_kanbanboard.board.repository;
 
-public class BoardRepository {
+import com.example.hybrid_kanbanboard.board.entity.Board;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BoardRepository extends JpaRepository<Board, Long> {
 }
