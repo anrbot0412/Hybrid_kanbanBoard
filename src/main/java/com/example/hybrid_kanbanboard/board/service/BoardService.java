@@ -26,8 +26,9 @@ public class BoardService {
     }
 
     // 특정 보드 조회
-    public Board findBoard(Long BoardId) {
-        return boardRepository.findById(BoardId).orElseThrow(() ->
+    public BoardResponseDto findBoard(Long BoardId) {
+        Board board =  boardRepository.findById(BoardId).orElseThrow(() ->
                 new IllegalArgumentException("선택한 보드가 존재하지 않습니다"));
+        return new BoardResponseDto(board);
     }
 }

@@ -21,9 +21,16 @@ public class BoardController {
     public BoardResponseDto createBoard(@RequestBody BoardRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return boardService.createBoard(requestDto, userDetails.getUser());
     }
-
+    //전체 보드 조회
     @GetMapping("/board")
     public List<BoardResponseDto> getBoard() {
     return boardService.getBoard();
+    }
+
+    //특정 보드 선택 조회
+    @GetMapping("/board/{BoardId}")
+    public BoardResponseDto getBoardByNum(@PathVariable Long BoardId) {
+        BoardResponseDto responseDto = boardService.findBoard(BoardId);
+        return responseDto;
     }
 }
