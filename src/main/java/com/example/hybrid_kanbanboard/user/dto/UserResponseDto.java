@@ -1,6 +1,6 @@
 package com.example.hybrid_kanbanboard.user.dto;
 
-import com.example.hybrid.user.entity.User;
+import com.example.hybrid_kanbanboard.user.entity.User;
 import lombok.Getter;
 import lombok.Setter;
 
