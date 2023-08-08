@@ -21,15 +21,20 @@ public class Board {
     private String description; // board 설명
 
     @Column(nullable = false, unique = true)
-    private String name; // board 이름
+    private String boardName; // board 이름
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "boardMaker")
     private User user;
 
     public Board(BoardRequestDto requestDto, User user) {
         this.user = user;
         this.description = requestDto.getDescription();
-        this.name = requestDto.getName();
+        this.boardName = requestDto.getBoardName();
+    }
+
+    public void update(BoardRequestDto requestDto) {
+        this.boardName= requestDto.getBoardName();
+        this.description = requestDto.getDescription();
     }
 }

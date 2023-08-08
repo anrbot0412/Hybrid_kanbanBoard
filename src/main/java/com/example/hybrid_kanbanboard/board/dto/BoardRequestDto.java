@@ -7,5 +7,5 @@ public class BoardRequestDto {
 
     private int BoardId;
     private String description;
-    private String name;
+    private String boardName;
 }
