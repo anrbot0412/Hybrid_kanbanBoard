@@ -1,7 +1,7 @@
 package com.example.hybrid_kanbanboard.security.config;
 
-import com.example.hybrid_kanbanboard.security.jwt.Filter.JwtAuthenticationFilter;
-import com.example.hybrid_kanbanboard.security.jwt.Filter.JwtAuthorizationFilter;
+import com.example.hybrid_kanbanboard.security.jwt.filter.JwtAuthenticationFilter;
+import com.example.hybrid_kanbanboard.security.jwt.filter.JwtAuthorizationFilter;
 import com.example.hybrid_kanbanboard.security.jwt.JwtUtil;
 import com.example.hybrid_kanbanboard.security.jwt.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
