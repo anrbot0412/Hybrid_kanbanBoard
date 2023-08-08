@@ -8,12 +8,12 @@ import lombok.Setter;
 @Setter
 public class UserResponseDto {
     private String userName;
-    private String userEmail;
-    private String userNick;
+    private String email;
+    private String nickname;
 
     public UserResponseDto(User user) {
         this.userName = user.getUserName();
-        this.userEmail = user.getUserEmail();
-        this.userNick = user.getUserNick();
+        this.email = user.getEmail();
+        this.nickname = user.getNickname();
     }
 }

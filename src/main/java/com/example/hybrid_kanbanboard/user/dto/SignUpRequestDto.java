@@ -15,15 +15,15 @@ public class SignUpRequestDto {
 
     @NotBlank(message = "비밀번호를 입력해주세요.")
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,16}$", message = "비밀번호는 8~16자리수여야 합니다. 영문 대소문자, 숫자, 특수문자를 1개 이상 포함해야 합니다.")
-    private String userPassword;
+    private String password;
 
     @NotBlank(message = "이메일을 입력해주세요.")
     @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "유효한 이메일 형식이 아닙니다.")
-    private String userEmail;
+    private String email;
 
     @NotBlank(message = "이름 또는 별명을 입력해주세요.")
     @Size(min=2,max=8,message = "이름(별명)은 최소 2글자에서 최대 8글자로 설정 할 수 있습니다.")
-    private String userNick;
+    private String nickname;
 
     @NotBlank
     private UserRoleEnum role;

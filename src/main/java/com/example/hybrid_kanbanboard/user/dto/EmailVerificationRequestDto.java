@@ -6,11 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EmailVerificationRequestDto {
-    private String userEmail;
-    private int verificationCode;
+    private String email;
+    private String verificationCode;
 
-    public EmailVerificationRequestDto(String userEmail, int verificationCode) {
-        this.userEmail = userEmail;
+    public EmailVerificationRequestDto(String email, String verificationCode) {
+        this.email = email;
         this.verificationCode = verificationCode;
     }
 }
