@@ -3,7 +3,6 @@ package com.example.hybrid_kanbanboard.security.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
@@ -33,11 +32,11 @@ public class EmailConfig {
     @Bean
     public JavaMailSender javaMailService() {
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-        javaMailSender.setHost("smtp.gmail.com");
-        javaMailSender.setUsername(id);
+        javaMailSender.setHost("smtp.gmail.com"); //smtp 서버 주소
+        javaMailSender.setUsername(id); // 발신 메일 아이디
         javaMailSender.setPassword(password);
-        javaMailSender.setPort(port);
-        javaMailSender.setJavaMailProperties(getMailProperties());
+        javaMailSender.setPort(port); // smtp port
+        javaMailSender.setJavaMailProperties(getMailProperties()); // 메일 인증 서버 정보 가져오기
         javaMailSender.setDefaultEncoding("UTF-8");
         return javaMailSender;
     }
@@ -45,8 +44,8 @@ public class EmailConfig {
     {
         Properties pt = new Properties();
         pt.put("mail.smtp.socketFactory.port", socketPort);
-        pt.put("mail.smtp.auth", auth);
-        pt.put("mail.smtp.starttls.enable", starttls);
+        pt.put("mail.smtp.auth", auth); // smpt 인증
+        pt.put("mail.smtp.starttls.enable", starttls); // smtp starttls 사용
         pt.put("mail.smtp.starttls.required", startlls_required);
         pt.put("mail.smtp.socketFactory.fallback",fallback);
         pt.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
