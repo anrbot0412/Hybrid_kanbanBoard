@@ -20,9 +20,9 @@ public class UserService {
 
     public void signup(SignUpRequestDto requestDto) {
         String userName = requestDto.getUserName();
-        String userPassword = passwordEncoder.encode(requestDto.getUserPassword());
-        String userEmail = requestDto.getUserEmail();
-        String userNick = requestDto.getUserNick();
+        String password = passwordEncoder.encode(requestDto.getPassword());
+        String email = requestDto.getEmail();
+        String nickname = requestDto.getNickname();
         UserRoleEnum role = requestDto.getRole();
 
         // 회원 중복 확인 --> Entity 에서도  @Column(nullable = false, unique = true) 이런식으로 고유값으로 선언해야한다
@@ -32,14 +32,13 @@ public class UserService {
         }
 
         // email 중복확인
-        Optional<User> checkEmail = userRepository.findByUserEmail(userEmail);
-        if (checkEmail.isPresent()) {
+        Optional<User> checkUserEmail = userRepository.findByEmail(email);
+        if (checkUserEmail.isPresent()) {
             throw new IllegalArgumentException("중복된 Email 입니다.");
         }
 
         // 사용자 등록
-        User user = new User(userName, userPassword, userEmail, userNick, role);
+        User user = new User(userName, password, email, nickname, role);
         userRepository.save(user);
-
     }
 }

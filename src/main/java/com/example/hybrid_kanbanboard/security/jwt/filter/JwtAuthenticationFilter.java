@@ -1,4 +1,4 @@
-package com.example.hybrid_kanbanboard.security.jwt.Filter;
+package com.example.hybrid_kanbanboard.security.jwt.filter;
 
 import com.example.hybrid_kanbanboard.security.jwt.JwtUtil;
 import com.example.hybrid_kanbanboard.security.jwt.UserDetailsImpl;
@@ -38,7 +38,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             return getAuthenticationManager().authenticate(
                     new UsernamePasswordAuthenticationToken(
                             requestDto.getUserName(),
-                            requestDto.getUserPassword(),
+                            requestDto.getPassword(),
                             null
                     )
             );

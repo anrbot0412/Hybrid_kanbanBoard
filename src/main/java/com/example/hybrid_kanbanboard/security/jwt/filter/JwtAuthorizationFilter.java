@@ -1,4 +1,4 @@
-package com.example.hybrid_kanbanboard.security.jwt.Filter;
+package com.example.hybrid_kanbanboard.security.jwt.filter;
 
 import com.example.hybrid_kanbanboard.security.jwt.JwtUtil;
 import com.example.hybrid_kanbanboard.security.jwt.UserDetailsServiceImpl;
@@ -7,7 +7,6 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

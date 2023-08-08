@@ -20,7 +20,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getUserPassword();
+        return user.getPassword();
     }
 
     @Override
