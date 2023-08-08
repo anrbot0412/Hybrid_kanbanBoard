@@ -29,12 +29,12 @@ public class CardController {
         return ResponseEntity.ok().body(new MsgResponseDto("카드 생성 성공!", HttpStatus.OK.value()));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{cardId}")
     public ResponseEntity<MsgResponseDto> updateCard(@AuthenticationPrincipal UserDetailsImpl userDetails,
-                                                     @PathVariable Long id,
+                                                     @PathVariable Long cardId,
                                                      @RequestBody CardRequestDto requestDto) {
         try {
-            CardResponseDto result = cardService.updateCard(id, requestDto, userDetails.getUser());
+            CardResponseDto result = cardService.updateCard(cardId, requestDto, userDetails.getUser());
             return ResponseEntity.ok().body(result);
         } catch (RejectedExecutionException e) {
             return ResponseEntity.badRequest().body(new MsgResponseDto("작성자만 수정 할 수 있습니다.", HttpStatus.BAD_REQUEST.value()));
@@ -42,11 +42,11 @@ public class CardController {
     }
 
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{cardId}")
     public ResponseEntity<MsgResponseDto> deleteCard(@AuthenticationPrincipal UserDetailsImpl userDetails,
-                                                     @PathVariable Long id) {
+                                                     @PathVariable Long cardId) {
         try {
-            cardService.deleteCard(id, userDetails.getUser());
+            cardService.deleteCard(cardId, userDetails.getUser());
             return ResponseEntity.ok().body(new MsgResponseDto("카드 삭제 성공,", HttpStatus.OK.value()));
         } catch (RejectedExecutionException e) {
             return ResponseEntity.badRequest().body(new MsgResponseDto("작성자만 삭제 할 수 있습니다.", HttpStatus.BAD_REQUEST.value()));
