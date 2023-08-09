@@ -7,9 +7,11 @@ import com.example.hybrid_kanbanboard.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 public class CheckList extends TimeStamped {
     @Id
@@ -23,6 +25,7 @@ public class CheckList extends TimeStamped {
     private boolean isCompleted;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
@@ -34,11 +37,10 @@ public class CheckList extends TimeStamped {
         this.isCompleted = false;
     }
 
-    public void setUser(User user) {
+    public CheckList(CheckListRequestDto checkListRequestDto, User user, Check check) {
+        this.description = checkListRequestDto.getDescription();
+        this.isCompleted = false;
         this.user = user;
-    }
-
-    public void setCheck(Check check) {
         this.check = check;
     }
 

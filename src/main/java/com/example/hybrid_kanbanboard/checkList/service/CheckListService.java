@@ -28,9 +28,9 @@ public class CheckListService {
     public void createCheckList(Long checkId , User user, CheckListRequestDto checkListRequestDto) {
         Check check = checkRepository.findById(checkId).orElseThrow();
         // if() 보드에 추가된사람만 생성 할 수 있게 예외처리.
-        CheckList checkList = new CheckList(checkListRequestDto);
-        checkList.setUser(user);
-        checkList.setCheck(check);
+        CheckList checkList = new CheckList(checkListRequestDto,user,check);
+        check.addCheckList(checkList);
+
         checkListRepository.save(checkList);
     }
 

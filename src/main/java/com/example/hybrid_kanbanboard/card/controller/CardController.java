@@ -20,8 +20,7 @@ public class CardController {
 
     private final CardService cardService;
 
-
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<MsgResponseDto> createCard(@AuthenticationPrincipal UserDetailsImpl userDetails,
                                                      @RequestBody CardRequestDto requestDto) {
         cardService.createCard(requestDto, userDetails.getUser());

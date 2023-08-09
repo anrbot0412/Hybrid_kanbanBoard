@@ -4,7 +4,6 @@ import com.example.hybrid_kanbanboard.board.entity.Board;
 import com.example.hybrid_kanbanboard.column.dto.ColumnResponseDto;
 import lombok.Getter;
 
-import java.util.Comparator;
 import java.util.List;
 
 @Getter
@@ -20,7 +19,7 @@ public class BoardResponseDto {
         this.description= board.getDescription();
         this.boardName = board.getBoardName();
         this.boardMaker = board.getUser().getUserName();
-        this.columnList = board.getColumnList().stream()
+        this.columnList = board.getColumnsList().stream()
                 .map(ColumnResponseDto::new)
                 .toList();
 

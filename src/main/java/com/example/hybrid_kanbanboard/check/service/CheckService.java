@@ -1,5 +1,8 @@
 package com.example.hybrid_kanbanboard.check.service;
 
+import com.example.hybrid_kanbanboard.card.entity.Card;
+import com.example.hybrid_kanbanboard.card.repository.CardRepository;
+import com.example.hybrid_kanbanboard.card.service.CardService;
 import com.example.hybrid_kanbanboard.check.dto.CheckRequestDto;
 import com.example.hybrid_kanbanboard.check.dto.CheckResponseDto;
 import com.example.hybrid_kanbanboard.check.dto.CheckResponseDtos;
@@ -18,12 +21,13 @@ import java.util.stream.Collectors;
 public class CheckService {
 
     private final CheckRepository checkRepository;
-//    private final CardRepository cardRepository;
+    private final CardService cardService;
 
     @Transactional
     public void createCheck(Long cardId,User user, CheckRequestDto checkRequestDto) {
-        Check check = new Check(checkRequestDto);
-        check.setUser(user);
+        Card card=cardService.findCard(cardId);
+        Check check = new Check(checkRequestDto,card,user);
+        card.addCheck(check);
 
         checkRepository.save(check);
     }

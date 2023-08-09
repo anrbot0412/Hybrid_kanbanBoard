@@ -1,6 +1,6 @@
 package com.example.hybrid_kanbanboard.column.dto;
 
-import com.example.hybrid_kanbanboard.column.entity.Column;
+import com.example.hybrid_kanbanboard.column.entity.Columns;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,11 +13,11 @@ public class ColumnResponseDto {
     private String columnName;
     private String columnMaker;
 
-    public ColumnResponseDto(Column column) {
-        this.ColumnId = column.getColumnId();
-        this.BoardId = column.getBoard().getBoardId();
-        this.columnMaker = column.getUser().getUserName();
-        this.columnName = column.getColumnName();
+    public ColumnResponseDto(Columns columns) {
+        this.ColumnId = columns.getColumnId();
+        this.BoardId = columns.getBoard().getBoardId();
+        this.columnMaker = columns.getUser().getUserName();
+        this.columnName = columns.getColumnName();
     }
 
 
