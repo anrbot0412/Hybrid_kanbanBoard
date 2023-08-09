@@ -33,12 +33,19 @@ public class BoardController {
         return boardService.getBoard();
     }
 
-    //특정 보드 선택 조회
+    //보드 + 칼럼 조회
     @GetMapping("/board/{BoardId}")
-    public Board getBoardByNum(@PathVariable Long BoardId) {
-        Board responseDto = boardService.findBoard(BoardId);
+    public BoardResponseDto getBoardAndCol(@PathVariable Long BoardId) {
+        BoardResponseDto responseDto = boardService.getBoardCol(BoardId);
         return responseDto;
     }
+
+    //특정 보드 선택 조회
+//    @GetMapping("/board/{BoardId}")
+//    public Board getBoardByNum(@PathVariable Long BoardId) {
+//        Board responseDto = boardService.findBoard(BoardId);
+//        return responseDto;
+//    }
 
     //보드 수정
     @PutMapping("/board/{BoardId}")

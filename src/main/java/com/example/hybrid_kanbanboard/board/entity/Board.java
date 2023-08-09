@@ -2,10 +2,14 @@ package com.example.hybrid_kanbanboard.board.entity;
 
 import com.example.hybrid_kanbanboard.board.dto.BoardRequestDto;
 import com.example.hybrid_kanbanboard.user.entity.User;
+import com.zaxxer.hikari.util.ConcurrentBag;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,9 +27,13 @@ public class Board {
     @Column(nullable = false, unique = true)
     private String boardName; // board 이름
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "boardMaker")
     private User user;
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<com.example.hybrid_kanbanboard.column.entity.Column> columnList = new ArrayList<>();
+
 
     public Board(BoardRequestDto requestDto, User user) {
         this.user = user;
@@ -36,5 +44,10 @@ public class Board {
     public void update(BoardRequestDto requestDto) {
         this.boardName= requestDto.getBoardName();
         this.description = requestDto.getDescription();
+    }
+
+    public void addColumnList(com.example.hybrid_kanbanboard.column.entity.Column column) {
+        this.columnList.add(column);
+        column.setBoard(this);
     }
 }

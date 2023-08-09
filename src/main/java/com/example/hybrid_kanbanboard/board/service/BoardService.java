@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.RejectedExecutionException;
 
@@ -27,6 +28,13 @@ public class BoardService {
     // 보드 조회
     public List<BoardResponseDto> getBoard() {
         return boardRepository.findAll().stream().map(BoardResponseDto::new).toList();
+    }
+
+    //보드 + 칼럼 조회
+    public BoardResponseDto getBoardCol(Long BoardId) {
+        Board board = boardRepository.findById(BoardId).orElseThrow(() ->
+                new IllegalArgumentException("선택한 보드가 존재하지 않습니다."));
+                return new BoardResponseDto(board);
     }
 
     // 특정 보드 조회
@@ -59,6 +67,14 @@ public class BoardService {
             throw new RejectedExecutionException();
         } else
             boardRepository.delete(board);
-
-        }
     }
+
+    public List<BoardResponseDto> getAllBoard() {
+        List<Board> boardList = boardRepository.findAll();
+        List<BoardResponseDto> responseDtoList = new ArrayList<>();
+        for (Board board : boardList) {
+            responseDtoList.add(new BoardResponseDto(board));
+        }
+        return responseDtoList;
+    }
+}
