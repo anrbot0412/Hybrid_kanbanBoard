@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -40,5 +41,9 @@ public class UserService {
         // 사용자 등록
         User user = new User(userName, password, email, nickname, role);
         userRepository.save(user);
+    }
+
+    public List<User> findParticipantsOfBoard(Long boardId) {
+        return userRepository.findUsersByBoardId(boardId);
     }
 }

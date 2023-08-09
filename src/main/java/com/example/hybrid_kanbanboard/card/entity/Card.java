@@ -3,6 +3,7 @@ package com.example.hybrid_kanbanboard.card.entity;
 import com.example.hybrid_kanbanboard.card.dto.CardRequestDto;
 import com.example.hybrid_kanbanboard.check.entity.Check;
 import com.example.hybrid_kanbanboard.column.entity.Columns;
+import com.example.hybrid_kanbanboard.notification.entity.Notification;
 import com.example.hybrid_kanbanboard.user.entity.TimeStamped;
 import com.example.hybrid_kanbanboard.user.entity.User;
 import jakarta.persistence.*;
@@ -49,6 +50,9 @@ public class Card extends TimeStamped {
 
     @OneToMany(mappedBy = "card")
     private List<Check> checkList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Notification> notifications;
 
     public Card(CardRequestDto requestDto) {
         this.name = requestDto.getName();
