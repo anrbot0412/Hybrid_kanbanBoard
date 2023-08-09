@@ -23,7 +23,7 @@ public class CheckController {
     @PostMapping("/{cardId}")
     public ResponseEntity<MsgResponseDto> createCheckList(@PathVariable Long cardId , @AuthenticationPrincipal UserDetailsImpl userDetails , @RequestBody CheckRequestDto checkRequestDto) {
         checkService.createCheck(cardId,userDetails.getUser(), checkRequestDto);
-        return ResponseEntity.ok().body(new MsgResponseDto("체크리스트 생성 성공 !", HttpStatus.OK.value()));
+        return ResponseEntity.ok().body(new MsgResponseDto("체크보드 생성 성공 !", HttpStatus.OK.value()));
     }
 
     @GetMapping("/{checkId}")
@@ -41,12 +41,12 @@ public class CheckController {
     @PutMapping("/{checkId}")
     public ResponseEntity<MsgResponseDto> updateCheckList(@PathVariable Long checkId , @AuthenticationPrincipal UserDetailsImpl userDetails , @RequestBody CheckRequestDto checkRequestDto) {
         checkService.updateCheck(checkId,userDetails.getUser(), checkRequestDto);
-        return ResponseEntity.ok().body(new MsgResponseDto("체크리스트 수정 성공 !", HttpStatus.OK.value()));
+        return ResponseEntity.ok().body(new MsgResponseDto("체크보드 수정 성공 !", HttpStatus.OK.value()));
     }
 
     @DeleteMapping("/{checkId}")
     public ResponseEntity<MsgResponseDto> deleteComment(@PathVariable Long checkId , @AuthenticationPrincipal UserDetailsImpl userDetails) {
         checkService.deleteCheck(checkId,userDetails.getUser());
-        return ResponseEntity.ok().body(new MsgResponseDto("체크리스트 삭제 성공 !", HttpStatus.OK.value()));
+        return ResponseEntity.ok().body(new MsgResponseDto("체크보드 삭제 성공 !", HttpStatus.OK.value()));
     }
 }
