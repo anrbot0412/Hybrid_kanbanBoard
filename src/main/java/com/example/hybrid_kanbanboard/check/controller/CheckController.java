@@ -32,7 +32,7 @@ public class CheckController {
         return ResponseEntity.ok().body(checkResponseDto);
     }
 
-    @GetMapping("")
+    @GetMapping("/")
     public ResponseEntity<CheckResponseDtos> getCheckLists() {
         CheckResponseDtos checkResponses = checkService.getChecks();
         return ResponseEntity.ok().body(checkResponses);

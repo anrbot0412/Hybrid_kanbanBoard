@@ -14,7 +14,7 @@ import lombok.Setter;
 @Table(name = "columns")
 @NoArgsConstructor
 
-public class Column {
+public class Columns {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +34,7 @@ public class Column {
     @JoinColumn(name= "boardNumber")
     private Board board;
 
-    public Column(ColumnRequestDto requestDto, User user, Board board) {
+    public Columns(ColumnRequestDto requestDto, User user, Board board) {
         this.columnName =requestDto.getColumnName();
         this.columnPosition = requestDto.getColumnPosition();
         this.user = user;
